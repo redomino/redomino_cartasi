@@ -1,0 +1,41 @@
+{% extends "lfs/base.html" %}
+{% load i18n %}
+
+{% block section %}{% endblock %}
+
+{% block content %}
+    <h1>{% trans 'Redirect automatico' %}</h1>
+
+    <p>Tra qualche istante verrai automaticamente rediretto sulla pagina di pagamento, attendere prego</p>
+
+        <form action="{{ ACTION }}" method="POST" id="cartasi">
+            <input type="hidden" name="TERMINAL_ID" value="{{ TERMINAL_ID }}">
+            <input type="hidden" name="TRANSACTION_ID" value="{{ TRANSACTION_ID }}">
+            <input type="hidden" name="ACTION_CODE" value="{{ ACTION_CODE }}">
+            <input type="hidden" name="AMOUNT" value="{{ AMOUNT }}">
+            <input type="hidden" name="CURRENCY" value="{{ CURRENCY }}">
+            <input type="hidden" name="LANGUAGE" value="{{ LANGUAGE}}">
+            <input type="hidden" name="NOTIFICATION_URL" value="http://{{request.META.HTTP_HOST}}/{{ NOTIFICATION_URL }}">
+            <input type="hidden" name="RESULT_URL" value="http://{{request.META.HTTP_HOST}}/{{ RESULT_URL }}">
+            <input type="hidden" name="ERROR_URL" value="http://{{request.META.HTTP_HOST}}/{{ ERROR_URL }}">
+            <input type="hidden" name="ANNULMENT_URL" value="http://{{request.META.HTTP_HOST}}/{{ ANNULMENT_URL }}">
+            <input type="hidden" name="MAC" value="{{ MAC }}">
+            <input type="hidden" name="VERSION_CODE" value="{{ VERSION_CODE }}">
+            <input type="hidden" name="EMAIL" value="{{ EMAIL }}">
+            <input type="hidden" name="ORDER_DESC" value="{{ ORDER_DESC }}">
+            <input type="hidden" name="CO_PLATFORM" value="{{ CO_PLATFORM }}">
+            <input type="hidden" name="MESSAGE_TYPE" value="{{ MESSAGE_TYPE }}">
+
+            <noscript>
+                <p>ATTENZIONE: il metodo di pagamento Cartasi richiede obbligatoriamente l'attivazione di Javascript sul browser. Attivare i javascript e ripetere l'operazione di acquisto prego.</p>
+            </noscript>
+        </form> 
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                        $('#cartasi').submit();
+                    }
+                    );
+        </script>
+
+{% endblock %}

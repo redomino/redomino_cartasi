@@ -8,7 +8,7 @@
 
     <p>Tra qualche istante verrai automaticamente rediretto sulla pagina di pagamento, attendere prego</p>
 
-        <form action="{{ ACTION }}" method="POST" id="cartasi">
+        <form action="{{ ACTION }}" method="POST" id="cartasi" name="cartasi">
             <input type="hidden" name="TERMINAL_ID" value="{{ TERMINAL_ID }}">
             <input type="hidden" name="TRANSACTION_ID" value="{{ TRANSACTION_ID }}">
             <input type="hidden" name="ACTION_CODE" value="{{ ACTION_CODE }}">
@@ -32,10 +32,7 @@
         </form> 
 
         <script type="text/javascript">
-            $(document).ready(function() {
-                        $('#cartasi').submit();
-                    }
-                    );
+            document.cartasi.submit();
         </script>
 
 {% endblock %}

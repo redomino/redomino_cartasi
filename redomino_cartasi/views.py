@@ -17,12 +17,12 @@ from redomino_cartasi.utils import log_debug
 
 
 def postform_cartasi(request, template='postform_cartasi.html'):
-    """ Form per redirect automatico"""
+    """ Form with auto redirect to cartasi """
     return render(request, template, request.REQUEST)
 
 @csrf_exempt
 def error(request, template='error.html'):
-    """ Vista errore acquisto """
+    """ Error buying view """
     try:
         log_debug("ERROR during payment for %s" % str(request.POST))
         transaction_id = request.POST.get('TRANSACTION_ID')
@@ -39,7 +39,7 @@ def error(request, template='error.html'):
 
 @csrf_exempt
 def annulment(request, template='annulment.html'):
-    """ Vista acquisto annullato """
+    """ Annulment view """
     try:
         log_debug("Annullment requested for %s" % str(request.POST))
         transaction_id = request.POST.get('TRANSACTION_ID')
@@ -57,6 +57,8 @@ def annulment(request, template='annulment.html'):
 @csrf_exempt
 def paid_cartasi(request):
     """
+    Cartasi documentation (italian only).
+
     Formato VPOSNotification
     ========================
     

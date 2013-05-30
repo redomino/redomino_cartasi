@@ -4,9 +4,9 @@
 {% block section %}{% endblock %}
 
 {% block content %}
-    <h1>{% trans 'Redirect automatico' %}</h1>
+    <h1>{% trans 'Please wait' %}</h1>
 
-    <p>Tra qualche istante verrai automaticamente rediretto sulla pagina di pagamento, attendere prego</p>
+    <p>{% trans 'You will be automatically redirect to the payment page in a few seconds' %}</p>
 
         <form action="{{ ACTION }}" method="POST" id="cartasi" name="cartasi">
             <input type="hidden" name="TERMINAL_ID" value="{{ TERMINAL_ID }}">
@@ -27,7 +27,7 @@
             <input type="hidden" name="MESSAGE_TYPE" value="{{ MESSAGE_TYPE }}">
 
             <noscript>
-                <p>ATTENZIONE: il metodo di pagamento Cartasi richiede obbligatoriamente l'attivazione di Javascript sul browser. Attivare i javascript e ripetere l'operazione di acquisto prego.</p>
+                <p>{% trans 'ATTENTION: in order to pay by Cartasi you need to enable Javascript on your browser. Please enable Javascript and repeat the operation.' %}</p>
             </noscript>
         </form> 
 

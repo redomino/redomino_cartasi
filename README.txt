@@ -25,9 +25,6 @@ Tests:
 
 $ ./bin/django test redomino_cartasi 
 
-TODO:
-* i18n (italian only)
-
 
 Authors
 -------

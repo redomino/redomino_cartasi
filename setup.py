@@ -20,7 +20,8 @@ setup(name='redomino_cartasi',
       description="Cartasi LFS processor",
       long_description="""\
 """,
-      classifiers=[], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
+      classifiers=["Framework :: Django",
+                   "Programming Language :: Python",], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
       keywords='',
       author='Davide Moro',
       author_email='davide.moro@redomino.com',

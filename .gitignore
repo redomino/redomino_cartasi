@@ -1,0 +1,15 @@
+*.pyc
+*.pyo
+*.swp
+*.swo
+
+/.installed.cfg
+/redomino_cartasi.egg-info/
+/bin/
+/develop-eggs/
+/docs/_build/
+/fake-eggs/
+/include/
+/lib/
+/parts/
+/var/

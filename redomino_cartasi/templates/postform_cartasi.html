@@ -15,10 +15,10 @@
             <input type="hidden" name="AMOUNT" value="{{ AMOUNT }}">
             <input type="hidden" name="CURRENCY" value="{{ CURRENCY }}">
             <input type="hidden" name="LANGUAGE" value="{{ LANGUAGE}}">
-            <input type="hidden" name="NOTIFICATION_URL" value="http://{{request.META.HTTP_HOST}}/{{ NOTIFICATION_URL }}">
-            <input type="hidden" name="RESULT_URL" value="http://{{request.META.HTTP_HOST}}/{{ RESULT_URL }}">
-            <input type="hidden" name="ERROR_URL" value="http://{{request.META.HTTP_HOST}}/{{ ERROR_URL }}">
-            <input type="hidden" name="ANNULMENT_URL" value="http://{{request.META.HTTP_HOST}}/{{ ANNULMENT_URL }}">
+            <input type="hidden" name="NOTIFICATION_URL" value="{{ NOTIFICATION_URL }}">
+            <input type="hidden" name="RESULT_URL" value="{{ RESULT_URL }}">
+            <input type="hidden" name="ERROR_URL" value="{{ ERROR_URL }}">
+            <input type="hidden" name="ANNULMENT_URL" value="{{ ANNULMENT_URL }}">
             <input type="hidden" name="MAC" value="{{ MAC }}">
             <input type="hidden" name="VERSION_CODE" value="{{ VERSION_CODE }}">
             <input type="hidden" name="EMAIL" value="{{ EMAIL }}">

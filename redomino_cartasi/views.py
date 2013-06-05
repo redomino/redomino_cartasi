@@ -2,6 +2,7 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.sites.models import Site
 
 from lfs.plugins import PAID
 from lfs.order.models import Order
@@ -56,6 +57,8 @@ def postform_cartasi(request, template='postform_cartasi.html'):
     MAC = get_mac(code)
     log_debug("MAC: %s" % MAC)
 
+    portal_url = "http://%s" % Site.objects.get_current().domain  
+
     cartasi_data = {
             'TRANSACTION_ID': TRANSACTION_ID,
             'AMOUNT': AMOUNT,
@@ -63,10 +66,10 @@ def postform_cartasi(request, template='postform_cartasi.html'):
             'ACTION_CODE': ACTION_CODE,
             'CURRENCY': CURRENCY,
             'LANGUAGE': LANGUAGE,
-            'NOTIFICATION_URL': NOTIFICATION_URL,
-            'RESULT_URL': RESULT_URL,
-            'ERROR_URL': ERROR_URL,
-            'ANNULMENT_URL': ANNULMENT_URL,
+            'NOTIFICATION_URL': '%s/%s' % (portal_url, NOTIFICATION_URL),
+            'RESULT_URL': '%s/%s' % (portal_url, RESULT_URL),
+            'ERROR_URL': '%s/%s' % (portal_url, ERROR_URL),
+            'ANNULMENT_URL': '%s/%s' % (portal_url, ANNULMENT_URL),
             'VERSION_CODE': VERSION_CODE,
             'MESSAGE_TYPE': MESSAGE_TYPE,
             'CO_PLATFORM': CO_PLATFORM,

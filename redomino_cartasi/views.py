@@ -1,5 +1,4 @@
 # coding=utf-8
-from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.views.decorators.csrf import csrf_exempt
@@ -94,7 +93,7 @@ def error(request, template='error.html'):
         log("Order %s cancelled (ERROR)" % order_id)
     except Exception, e:
         log("An error has occurred cancelling order (PAYMENT ERROR) %s [%s]" % (str(request.POST), str(e)))
-    return render(request, template, request.REQUEST)
+    return render_to_response(template, RequestContext(request))
 
 @csrf_exempt
 def annulment(request, template='annulment.html'):
@@ -111,7 +110,7 @@ def annulment(request, template='annulment.html'):
         log("Order %s cancelled" % order_id)
     except Exception, e:
         log("An error has occurred cancelling order %s [%s]" % (str(request.POST), str(e)))
-    return render(request, template, request.REQUEST)
+    return render_to_response(template, RequestContext(request))
 
 @csrf_exempt
 def paid_cartasi(request):

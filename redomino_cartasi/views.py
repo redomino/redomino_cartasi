@@ -1,7 +1,7 @@
 # coding=utf-8
-import logging
-
 from django.shortcuts import render
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 from django.views.decorators.csrf import csrf_exempt
 
 from lfs.plugins import PAID
@@ -14,11 +14,70 @@ from lfs.checkout.views import thank_you as _original_thank_you
 from redomino_cartasi.utils import transaction2order_id
 from redomino_cartasi.utils import log
 from redomino_cartasi.utils import log_debug
+from redomino_cartasi.utils import get_mac
+
+from redomino_cartasi.conf import MAC_KEY
+from redomino_cartasi.conf import TERMINAL_ID
+from redomino_cartasi.conf import ACTION_CODE
+from redomino_cartasi.conf import CURRENCY
+from redomino_cartasi.conf import LANGUAGE
+from redomino_cartasi.conf import NOTIFICATION_URL
+from redomino_cartasi.conf import RESULT_URL
+from redomino_cartasi.conf import ERROR_URL
+from redomino_cartasi.conf import ANNULMENT_URL
+from redomino_cartasi.conf import VERSION_CODE
+from redomino_cartasi.conf import MESSAGE_TYPE
+from redomino_cartasi.conf import CO_PLATFORM
+from redomino_cartasi.conf import VPOS_ACTION
 
 
 def postform_cartasi(request, template='postform_cartasi.html'):
     """ Form with auto redirect to cartasi """
-    return render(request, template, request.REQUEST)
+    order_id = int(request.GET['ORDER_ID'])
+    order = Order.objects.get(id=order_id)
+
+    total = order.price
+    TRANSACTION_ID = "T%019d" % order_id
+    AMOUNT = "%09d" % int(total*100)
+    EMAIL = order.customer_email
+    DESC_ORDER = '%s %s' % (order.customer_firstname, order.customer_lastname)
+    code = ''.join([TERMINAL_ID,
+                    TRANSACTION_ID,
+                    AMOUNT,
+                    CURRENCY,
+                    VERSION_CODE,
+                    CO_PLATFORM,
+                    ACTION_CODE,
+                    EMAIL,
+                    MAC_KEY
+                   ]
+                  )
+    log("CODE: %s" % code)
+
+    MAC = get_mac(code)
+    log_debug("MAC: %s" % MAC)
+
+    cartasi_data = {
+            'TRANSACTION_ID': TRANSACTION_ID,
+            'AMOUNT': AMOUNT,
+            'TERMINAL_ID': TERMINAL_ID,
+            'ACTION_CODE': ACTION_CODE,
+            'CURRENCY': CURRENCY,
+            'LANGUAGE': LANGUAGE,
+            'NOTIFICATION_URL': NOTIFICATION_URL,
+            'RESULT_URL': RESULT_URL,
+            'ERROR_URL': ERROR_URL,
+            'ANNULMENT_URL': ANNULMENT_URL,
+            'VERSION_CODE': VERSION_CODE,
+            'MESSAGE_TYPE': MESSAGE_TYPE,
+            'CO_PLATFORM': CO_PLATFORM,
+            'DESC_ORDER': DESC_ORDER,
+            'MAC': MAC,
+            'EMAIL': EMAIL,
+            'ACTION': VPOS_ACTION,
+           }
+    
+    return render_to_response(template, RequestContext(request, cartasi_data))
 
 @csrf_exempt
 def error(request, template='error.html'):

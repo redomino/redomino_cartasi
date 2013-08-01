@@ -30,6 +30,8 @@ from redomino_cartasi.conf import MESSAGE_TYPE
 from redomino_cartasi.conf import CO_PLATFORM
 from redomino_cartasi.conf import VPOS_ACTION
 
+from django.http import HttpResponse
+from lfs.core.signals import order_paid
 
 def postform_cartasi(request, template='postform_cartasi.html'):
     """ Form with auto redirect to cartasi """
@@ -191,8 +193,9 @@ def paid_cartasi(request):
             order = lfs_get_object_or_404(Order, pk=order_id)
             order.state = PAID
             order.save()
+            order_paid.send({"order": order})
             log("TRANSACTION SAVED for %s" % transaction_id)
-            return 'RESPONSE=0'
+            return HttpResponse('RESPONSE=0')
         else:
             log("WARNING, received a non TRANSACTION_OK for %s" % str(request.POST))
     except Exception, e:

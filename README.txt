@@ -1,7 +1,7 @@
 redomino_cartasi
 ================
 
-Cartasi (www.cartasi.it) payment method processor (light version) for Django LFS ecommerce (http://getlfs.com).
+Cartasi (www.cartasi.it, also known as "XPay CARTASI") payment method processor (light version) for Django LFS ecommerce (http://getlfs.com).
 
 Put into you settings.py module the right configuration, for example:
 

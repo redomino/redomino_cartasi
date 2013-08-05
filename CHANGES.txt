@@ -4,6 +4,9 @@
 - Modified README.txt
   [davidemoro]
 
+- Added .mo files
+  [davidemoro]
+
 
 0.1 (2013-08-01)
 ----------------

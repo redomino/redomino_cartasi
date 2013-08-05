@@ -2,7 +2,6 @@
 *.pyo
 *.swp
 *.swo
-*.mo
 
 /.installed.cfg
 /redomino_cartasi.egg-info/

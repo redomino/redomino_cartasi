@@ -1,4 +1,4 @@
-0.2 (unreleased)
+0.2 (2013-08-05)
 ----------------
 
 - Modified README.txt

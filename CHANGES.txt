@@ -1,4 +1,4 @@
-0.3 (unreleased)
+0.3 (2013-08-08)
 ----------------
 
 - Closed problem with float rounding (68.6 -> 68.59)

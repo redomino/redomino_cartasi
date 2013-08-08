@@ -3,7 +3,7 @@ redomino_cartasi
 
 Cartasi (www.cartasi.it, also known as "XPay CARTASI") payment method processor (light version) for Django LFS ecommerce (http://getlfs.com).
 
-Put into you settings.py module the right configuration, for example:
+Put into you settings.py module the right configuration, for example::
 
     # CARTASI settings
     MAC_KEY_CARTASI = 'your key'
@@ -19,6 +19,7 @@ Put into you settings.py module the right configuration, for example:
     MESSAGE_TYPE_CARTASI = 'C00'
     CO_PLATFORM_CARTASI = 'L'
     VPOS_ACTION_CARTASI = 'https://your-vpos-action'
+
 
 Repository:
 

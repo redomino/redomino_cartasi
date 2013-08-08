@@ -40,7 +40,7 @@ def postform_cartasi(request, template='postform_cartasi.html'):
 
     total = order.price
     TRANSACTION_ID = "T%019d" % order_id
-    AMOUNT = "%09d" % int(total*100)
+    AMOUNT = "%09d" % round(total*100)
     EMAIL = order.customer_email
     DESC_ORDER = '%s %s' % (order.customer_firstname, order.customer_lastname)
     code = ''.join([TERMINAL_ID,
